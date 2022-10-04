@@ -1,0 +1,387 @@
+{
+	"mainMenus": [
+		{
+			"name": "Dasboard",
+			"router_name": "AdminDashboard",
+			"icon": "la la-dashboard",
+			"subMenus": [],
+			"isOpen": false
+		},
+		{
+			"name": "Apps",
+			"router_name": "",
+			"icon": "la la-cube",
+			"isOpen": false,
+			"subMenus": [{
+					"name": "Chat",
+					"router_name": ""
+				},
+				{
+					"name": "Calls",
+					"router_name": ""
+				},
+				{
+					"name": "Metting",
+					"router_name": ""
+				},
+				{
+					"name": "Calender",
+					"router_name": ""
+				},
+				{
+					"name": "Cantacts",
+					"router_name": "Contacts"
+				},
+				{
+					"name": "Email",
+					"router_name": "EmailInbox"
+				},
+				{
+					"name": "File Manger",
+					"router_name": "FileManger"
+				}
+			]
+		},
+		{
+			"name": "Employees",
+			"router_name": "",
+			"icon": "la la-user",
+			"isOpen": false,
+			"subMenus": [{
+					"name": "All Employees",
+					"router_name": "Employees"
+				},
+				{
+					"name": "Holidays",
+					"router_name": "Holidays"
+				},
+				{
+					"name": "Leaves",
+					"router_name": "LeaveAdmin"
+				},
+				{
+					"name": "Leave Settings",
+					"router_name": "LeaveSetting"
+				},
+				{
+					"name": "Attendance",
+					"router_name": "AttendanceAdmin"
+				},
+				
+				{
+					"name": "Departments",
+					"router_name": "Department"
+				},
+				{
+					"name": "Designations",
+					"router_name": "Designation"
+				},
+				{
+					"name": "Timesheet",
+					"router_name": "Timesheet"
+				},
+				{
+					"name": "Shift & Schedule",
+					"router_name": "ShiftScheduling"
+				},
+				{
+					"name": "Overtime",
+					"router_name": "Overtime"
+				}
+			]
+		},
+		{
+			"name": "Clients",
+			"router_name": "Clients",
+			"icon": "la la-users",
+			"subMenus": []
+		},
+		{
+			"name": "Projects",
+			"router_name": "",
+			"icon": "la la-rocket",
+			"subMenus": [{
+					"name": "Projects",
+					"router_name": "Projects"
+				},
+				{
+					"name": "TaskBoard",
+					"router_name": "TaskBoard"
+				}
+			]
+		},
+		{
+			"name": "Tickets",
+			"router_name": "Ticket",
+			"icon": "la la-ticket",
+			"subMenus": []
+		},
+		{
+			"name": "Sales",
+			"router_name": "",
+			"icon": "la la-files-o",
+			"subMenus": [{
+					"name": "Estimates",
+					"router_name": "Estimates"
+				},
+				{
+					"name": "Invoices",
+					"router_name": "Invoice"
+				},
+				{
+					"name": "Payments",
+					"router_name": "Payment"
+				},
+				{
+					"name": "Provident Fund",
+					"router_name": "ProvidentFund"
+				},
+				{
+					"name": "Taxes",
+					"router_name": "Taxes"
+				}
+			]
+		},
+		{
+			"name": "Accounting",
+			"router_name": "",
+			"icon": "la la-files-o",
+			"subMenus": [{
+					"name": "Categories",
+					"router_name": "Categories"
+				},
+				{
+					"name": "Budgets",
+					"router_name": "Budgets"
+				},
+				{
+					"name": "Budget Expenses",
+					"router_name": "BudgetExpenses"
+				},
+				{
+					"name": "Budget Revenues",
+					"router_name": "BudgetRevenue"
+				}
+			]
+		},
+		{
+			"name": "Payroll",
+			"router_name": "",
+			"icon": "la la-money",
+			"subMenus": [{
+					"name": "Employee Salary",
+					"router_name": "Salary"
+				},
+				{
+					"name": "Payroll Items",
+					"router_name": "PayrollItems"
+				}
+			]
+		},
+		{
+			"name": "Policies",
+			"router_name": "Policies",
+			"icon": "la la-file-pdf-o",
+			"subMenus": []
+		},
+		{
+			"name": "Reports",
+			"router_name": "",
+			"icon": "la la-pie-chart",
+			"subMenus": [{
+					"name": "Expense Report",
+					"router_name": "ExpenseReport"
+				},
+				{
+					"name": "Invoice Report",
+					"router_name": "Invoice"
+				},
+				{
+					"name": "Payments Report",
+					"router_name": "PaymentReport"
+				},
+				{
+					"name": "Project Report",
+					"router_name": "ProjectReport"
+				},
+				{
+					"name": "Task Report",
+					"router_name": "TaskReport"
+				},
+				{
+					"name": "User Report",
+					"router_name": "UserReport"
+				},
+				{
+					"name": "Employee Report",
+					"router_name": "EmployeeReport"
+				},
+				{
+					"name": "Payslip Report",
+					"router_name": "PayslipReport"
+				},
+				{
+					"name": "Attendance Report",
+					"router_name": "AttendanceReport"
+				},
+				{
+					"name": "Leave Report",
+					"router_name": "LeaveReport"
+				},
+				{
+					"name": "Daily Report",
+					"router_name": "DailyReport"
+				}
+			]
+		},
+		{
+			"name": "Performance",
+			"router_name": "",
+			"icon": "la la-graduation-cap",
+			"subMenus": [{
+					"name": "Performance Indicator",
+					"router_name": "PerformanceIndicator"
+				},
+				{
+					"name": "Performance Review",
+					"router_name": "PerformanceReview"
+				},
+				{
+					"name": "Performance Appraisal",
+					"router_name": "PerformanceAppraisal"
+				}
+			]
+		},
+		{
+			"name": "Goals",
+			"router_name": "",
+			"icon": "la la-crosshairs",
+			"subMenus": [{
+					"name": "Goal List",
+					"router_name": "GoalList"
+				},
+				{
+					"name": "Goal Type",
+					"router_name": "GoalType"
+				}
+			]
+		},
+		{
+			"name": "Traing",
+			"router_name": "",
+			"icon": "la la-edit",
+			"subMenus": [{
+					"name": "Traning List",
+					"router_name": "TraningList"
+				},
+				{
+					"name": "Trainers",
+					"router_name": "Trainers"
+				},
+				{
+					"name": "Traning Type",
+					"router_name": "TraningType"
+				}
+			]
+		},
+		{
+			"name": "Promotion",
+			"router_name": "Promotion",
+			"icon": "la la-bullhorn",
+			"subMenus": []
+		},
+		{
+			"name": "Resignation",
+			"router_name": "Resignation",
+			"icon": "la la-external-link-square"
+		},
+		{
+			"name": "Termination",
+			"router_name": "Termination",
+			"icon": "la la-times-circle",
+			"subMenus": []
+		},
+		{
+			"name": "Assets",
+			"router_name": "Assets",
+			"icon": "la la-object-ungroup"
+		},
+		{
+			"name": "Jobs",
+			"router_name": "",
+			"icon": "la la-briefcase",
+			"subMenus": []
+		},
+		{
+			"name": "Knowledgebase",
+			"router_name": "Knowledgebase",
+			"icon": "la la-question",
+			"subMenus": []
+		},
+		{
+			"name": "Activites",
+			"router_name": "Activites",
+			"icon": "la la-bell",
+			"subMenus": []
+		}
+	],
+	"settingMenus":[
+		{
+			"name": "Company Setting",
+			"router_name": "CompanySetting",
+			"icon": "la la-building"
+		},{
+			"name": "Localization",
+			"router_name": "LocalizationSetting",
+			"icon": "la la-clock-o"
+			
+		},{
+			"name": "Theme Settings",
+			"router_name": "ThemeSetting",
+			"icon": "la la-photo"
+			
+		},{
+			"name": "Roles & Permissions",
+			"router_name": "RolePermissionSetting",
+			"icon": "la la-key"
+			
+		},{
+			"name": "Email Settings",
+			"router_name": "EmailSetting",
+			"icon": "la la-at"
+		
+		},{
+			"name": "Performance Settings",
+			"router_name": "PerformanceSetting",
+			"icon": "la la-chart-bar"
+		},{
+			"name": "Approval Settings",
+			"router_name": "ApprovalSetting",
+			"icon": "la la-thumbs-up"
+		},{
+			"name": "Invoice Settings",
+			"router_name": "InvoiceSetting",
+			"icon": "la la-pencil-square"
+		},{
+			"name": "Salary Settings",
+			"router_name": "SalarySetting",
+			"icon": "la la-money"
+		},{
+			"name": "Notifications",
+			"router_name": "NotificationSetting",
+			"icon": "la la-globe"
+		},{
+			"name": "Leave Type",
+			"router_name": "LeaveTypeSetting",
+			"icon": "la la-cogs"
+		},{
+			"name": "TextBox Settings",
+			"router_name": "TextboxSetting",
+			"icon": "la la-comment"
+		},{
+			"name": "Cron Settings",
+			"router_name": "CornSetting",
+			"icon": "la la-rocket"
+		}
+	]
+}
