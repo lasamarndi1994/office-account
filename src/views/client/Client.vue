@@ -12,12 +12,7 @@
           </ul>
         </div>
         <div class="col-auto float-end ms-auto">
-          <button
-            type="button"
-			@click="addClient"
-            class="btn add-btn"
-            
-          >
+          <button type="button" @click="addClient" class="btn add-btn">
             <i class="fa fa-plus"></i> Add Client
           </button>
           <div class="view-icons">
@@ -35,24 +30,21 @@
     <div class="row filter-row">
       <div class="col-sm-6 col-md-3">
         <div class="form-group form-focus">
-          <input type="text" class="form-control floating" />
-          <label class="focus-label">Client ID</label>
+          <input type="text" class="form-control" placeholder="Client ID" />
         </div>
       </div>
       <div class="col-sm-6 col-md-3">
         <div class="form-group form-focus">
-          <input type="text" class="form-control floating" />
-          <label class="focus-label">Client Name</label>
+          <input type="text" class="form-control" placeholder="Name" />
         </div>
       </div>
       <div class="col-sm-6 col-md-3">
         <div class="form-group form-focus select-focus">
-          <select class="select form-control floating">
+          <select class="select form-control">
             <option>Select Company</option>
             <option>Global Technologies</option>
             <option>Delta Infotech</option>
           </select>
-          <label class="focus-label">Company</label>
         </div>
       </div>
       <div class="col-sm-6 col-md-3">
@@ -65,17 +57,21 @@
       v-if="showStatus"
       @edit="edit"
       @delete="cdelete"
-      :clients="clients.data"
+      :clients="clients"
     />
-    <client-list
-      v-else
-      @edit="edit"
-      @delete="cdelete"
-      :clients="clients.data"
-    />
-	<div class="d-flex justify-content-center">
-      <Pagination :data="employees" @pagination-change-page="getClients" />
-    </div>
+    <client-list v-else @edit="edit" @delete="cdelete" :clients="clients" />
+    <infinite-loading @infinite="infiniteHandler">
+      <template #spinner>
+        <div class="d-flex justify-content-center">
+          <span>Loading...</span>
+        </div>
+      </template>
+      <template #complete>
+        <div class="d-flex justify-content-center">
+          <span>No more data found.</span>
+        </div>
+      </template>
+    </infinite-loading>
   </div>
   <v-modal
     :modalShow="modalShow"
@@ -138,42 +134,6 @@
             />
           </div>
         </div>
-        <div class="col-sm-6" v-if="!isEdit">
-          <div class="form-group">
-            <label class="col-form-label"
-              >Password <span class="text-danger">*</span></label
-            >
-            <input
-              autocomplete="off"
-              class="form-control"
-              id="password"
-              v-model="form.password"
-              type="password"
-            />
-          </div>
-        </div>
-        <div class="col-sm-6" v-if="!isEdit">
-          <div class="form-group">
-            <!-- <label class="col-form-label">Confirm Password</label> -->
-            <div class="mt-5 mr-2">
-              <button
-                type="button"
-                @click="generatePassword"
-                class="btn btn-primary btn-sm ml-2"
-              >
-                Generate Password</button
-              >&nbsp;
-              <input
-                type="checkbox"
-                v-model="form.send_password"
-                class="mr-2"
-              />
-              Send password
-            </div>
-
-            <!-- <input class="form-control" v-model="form.confirm_password" type="password" />  -->
-          </div>
-        </div>
         <div class="col-sm-6">
           <div class="form-group">
             <label class="col-form-label"
@@ -203,44 +163,6 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Department <span class="text-danger">*</span></label>
-            <select
-              class="select form-control"
-              id="department_id"
-              v-model="form.department_id"
-            >
-              <option value="">Select Department</option>
-              <option
-                v-for="(department, index) in departments"
-                :key="index"
-                :value="department.id"
-              >
-                {{ department.name }}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Designation <span class="text-danger">*</span></label>
-            <select
-              class="select form-control"
-              v-model="form.designation_id"
-              id="designation_id"
-            >
-              <option value="">Select Designation</option>
-              <option
-                v-for="(designation, index) in designations"
-                :key="index"
-                :value="designation.id"
-              >
-                {{ designation.name }}
-              </option>
-            </select>
-          </div>
-        </div>
       </div>
 
       <div class="submit-section">
@@ -257,10 +179,10 @@ const ClientGrid = defineAsyncComponent(() => import("./ClientGrid.vue"));
 const ClientList = defineAsyncComponent(() => import("./ClientList.vue"));
 const flatPickr = defineAsyncComponent(() => import("vue-flatpickr-component"));
 
-const LaravelVuePagination = defineAsyncComponent(() =>
-  import("laravel-vue-pagination")
-);
+const InfiniteLoading = defineAsyncComponent(() => import("v3-infinite-loading"));
+
 import "flatpickr/dist/flatpickr.css";
+
 import { useToast } from "vue-toastification";
 
 export default {
@@ -272,7 +194,7 @@ export default {
     ClientGrid,
     ClientList,
     flatPickr,
-    Pagination: LaravelVuePagination,
+    InfiniteLoading,
   },
   data() {
     return {
@@ -283,6 +205,7 @@ export default {
       progress: false,
       isEdit: false,
       modalTitle: "Add New Client",
+      page: 1,
       form: {
         id: "",
         employee_id: "",
@@ -298,18 +221,28 @@ export default {
       },
     };
   },
-  created(){
-	this.getClints();
+  created() {
+    //this.getClints();
   },
 
   methods: {
-	getClints(){
-		http.get('clients').then((response) =>{
-			this.clients = response.data;
-		})
-	},
-	cdelete(index, employee_id) {
-		
+    async infiniteHandler($state) {
+      await http
+        .get(`/client?page=${this.page}`)
+        .then((res) => {
+          if (res.data.data.length > 0) {
+            this.clients.push(...res.data.data);
+          } else {
+            $state.complete();
+          }
+        })
+        .catch(() => {
+          $state.error();
+        });
+      this.page++;
+    },
+
+    cdelete(index, employee_id) {
       this.deleteInfo().then((result) => {
         if (result.isConfirmed) {
           http.delete(`/employee/${employee_id}`).then((res) => {
@@ -332,21 +265,21 @@ export default {
       this.modalShow = !this.modalShow;
     },
     edit(client_id) {
-		this.showMadal();
-    //   this.modalTitle = "Update Client";
-    //   this.isEdit = true;
-    //   http
-    //     .get(`employee/${employee_id}`)
-    //     .then((response) => {
-    //       this.showMadal();
-    //       this.form = response.data.data;
-    //       if (response.data.data.modules.length > 0) {
-    //         this.modules = response.data.data.modules;
-    //       } else {
-    //         this.getModules();
-    //       }
-    //     })
-    //     .catch(() => {});
+      this.showMadal();
+      //   this.modalTitle = "Update Client";
+      //   this.isEdit = true;
+      //   http
+      //     .get(`employee/${employee_id}`)
+      //     .then((response) => {
+      //       this.showMadal();
+      //       this.form = response.data.data;
+      //       if (response.data.data.modules.length > 0) {
+      //         this.modules = response.data.data.modules;
+      //       } else {
+      //         this.getModules();
+      //       }
+      //     })
+      //     .catch(() => {});
     },
     showMadal() {
       this.modalShow = !this.modalShow;
@@ -362,3 +295,4 @@ export default {
   },
 };
 </script>
+<style scoped></style>

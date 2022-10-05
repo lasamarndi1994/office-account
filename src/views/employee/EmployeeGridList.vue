@@ -17,8 +17,8 @@
             class="action-icon dropdown-toggle material-icons"
             data-bs-toggle="dropdown"
             aria-expanded="false"
-            ><i class="fas fa-ellipsis-v"></i
-          ></a>
+            ><i class="material-icons">more_vert</i></a>
+			
           <div class="dropdown-menu dropdown-menu-right">
             <a
               class="dropdown-item"

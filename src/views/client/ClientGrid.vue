@@ -1,6 +1,6 @@
 <template>
   <div class="row staff-grid-row">
-    <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
+    <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3" v-for="(client,index) in clients" :key="index">
       <div class="profile-widget">
         <div class="profile-img">
           <a href="client-profile.html" class="avatar"
@@ -22,17 +22,15 @@
             <a
               class="dropdown-item"
               href="#"
-              data-bs-toggle="modal"
-              data-bs-target="#delete_client"
               ><i class="fa fa-trash-o m-r-5"></i> Delete</a
             >
           </div>
         </div>
         <h4 class="user-name m-t-10 mb-0 text-ellipsis">
-          <a href="client-profile.html">Global Technologies</a>
+          <a href="client-profile.html">{{client.organization}}</a>
         </h4>
         <h5 class="user-name m-t-10 mb-0 text-ellipsis">
-          <a href="client-profile.html">Barry Cuda</a>
+          <a href="client-profile.html">{{client.first_name}} {{client.last_name}}</a>
         </h5>
         <div class="small text-muted">CEO</div>
         <a href="chat.html" class="btn btn-white btn-sm m-t-10 m-r-5"
@@ -43,6 +41,7 @@
         >
       </div>
     </div>
+	
   </div>
 </template>
 <script>
@@ -63,6 +62,6 @@ export default {
 <style scoped>
 .profile-widget {
   padding: 10px 0 0 0;
-  height: 230px !important;
+  height: 250px !important;
 }
 </style>

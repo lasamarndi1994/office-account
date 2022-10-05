@@ -68,19 +68,28 @@
       v-if="showStatus"
       @edit="edit"
       @delete="edelete"
-      :employees="employees.data"
+      :employees="employees"
     />
 
     <employee-list
-      :employees="employees.data"
+      :employees="employees"
       @showModal="showMadal"
       @edit="edit"
       v-else
     />
 
-    <div class="d-flex justify-content-center">
-      <Pagination :data="employees" @pagination-change-page="getResults" />
-    </div>
+    <infinite-loading @infinite="infiniteHandler">
+      <template #spinner>
+        <div class="d-flex justify-content-center">
+          <span>Loading...</span>
+        </div>
+      </template>
+      <template #complete>
+        <div class="d-flex justify-content-center">
+          <span>No more data found.</span>
+        </div>
+      </template>
+    </infinite-loading>
   </div>
 
   <v-modal
@@ -291,37 +300,7 @@
       </div>
     </form>
   </v-modal>
-  <div class="modal custom-modal fade" id="delete_employee" role="dialog">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="form-header">
-            <h3>Delete Employee</h3>
-            <p>Are you sure want to delete?</p>
-          </div>
-          <div class="modal-btn delete-action">
-            <div class="row">
-              <div class="col-6">
-                <a
-                  href="javascript:void(0);"
-                  class="btn btn-primary continue-btn"
-                  >Delete</a
-                >
-              </div>
-              <div class="col-6">
-                <a
-                  href="javascript:void(0);"
-                  data-bs-dismiss="modal"
-                  class="btn btn-primary cancel-btn"
-                  >Cancel</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 </template>
 <script>
 import { defineAsyncComponent } from "vue";
@@ -331,12 +310,11 @@ const EmployeeGridList = defineAsyncComponent(() =>
 const EmployeeList = defineAsyncComponent(() => import("./EmployeeList.vue"));
 const flatPickr = defineAsyncComponent(() => import("vue-flatpickr-component"));
 
-const LaravelVuePagination = defineAsyncComponent(() =>
-  import("laravel-vue-pagination")
+const InfiniteLoading = defineAsyncComponent(() =>
+  import("v3-infinite-loading")
 );
 
 import "flatpickr/dist/flatpickr.css";
-
 
 import { useToast } from "vue-toastification";
 
@@ -349,7 +327,7 @@ export default {
     EmployeeGridList,
     EmployeeList,
     flatPickr,
-    Pagination: LaravelVuePagination,
+    InfiniteLoading,
   },
 
   data() {
@@ -363,6 +341,7 @@ export default {
       modules: [],
       progress: false,
       isEdit: false,
+      page: 1,
       modalTitle: "Add New Employee",
 
       form: {
@@ -382,7 +361,6 @@ export default {
   },
 
   created() {
-    this.getResults();
     this.getModules();
     http.get("/designations").then((res) => {
       this.designations = res.data.data;
@@ -422,10 +400,21 @@ export default {
           this.handleErrors(error);
         });
     },
-    getResults(page = 1) {
-      http.get("/employee?page=" + page).then((res) => {
-        this.employees = res.data;
-      });
+    async infiniteHandler($state) {
+      await http
+        .get(`/employee?page=${this.page}`)
+        .then((res) => {
+          if (res.data.data.length > 0) {
+            this.employees.push(...res.data.data);
+			
+          } else {
+            $state.complete();
+          }
+        })
+        .catch(() => {
+          $state.error();
+        });
+      this.page++;
     },
     getModules() {
       http.get("get-modules").then((res) => {
