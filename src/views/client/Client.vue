@@ -137,11 +137,11 @@
         <div class="col-sm-6">
           <div class="form-group">
             <label class="col-form-label"
-              >Employee ID <span class="text-danger">*</span></label
+              >Client ID <span class="text-danger">*</span></label
             >
             <input
               type="text"
-              v-model="form.employee_id"
+              v-model="form.client_id"
               id="employee_id"
               class="form-control floating"
             />
@@ -159,8 +159,107 @@
                 class="form-control datetimepicker"
                 placeholder="YYYY-MM-DD"
               />
-              <!-- <input class="form-control datetimepicker" id="date_picker" type="text" /> -->
             </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="col-form-label"
+              >Organization <span class="text-danger">*</span></label
+            >
+            <input
+              class="form-control"
+              id="organization"
+              v-model="form.organization"
+              type="text"
+            />
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="col-form-label"
+              >Website <span class="text-danger">*</span></label
+            >
+            <input
+              class="form-control"
+              id="website"
+              autocomplete="off"
+              v-model="form.website"
+              type="text"
+            />
+          </div>
+        </div>
+
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label class="col-form-label"
+              >Adress <span class="text-danger">*</span></label
+            >
+            <textarea
+              v-model="form.address"
+              id="address"
+              class="form-control"
+              cols="35"
+            >
+            </textarea>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="col-form-label"
+              >Country <span class="text-danger">*</span></label
+            >
+            <input
+              class="form-control"
+              id="country"
+              autocomplete="off"
+              v-model="form.country"
+              type="text"
+            />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="col-form-label"
+              >State <span class="text-danger">*</span></label
+            >
+            <input
+              class="form-control"
+              id="state"
+              autocomplete="off"
+              v-model="form.state"
+              type="text"
+            />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="col-form-label"
+              >City <span class="text-danger">*</span></label
+            >
+            <input
+              class="form-control"
+              id="city"
+              autocomplete="off"
+              v-model="form.city"
+              type="text"
+            />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="col-form-label"
+              >Postal Code <span class="text-danger">*</span></label
+            >
+            <input
+              class="form-control"
+              id="state"
+              autocomplete="off"
+              v-model="form.postal_code"
+              type="text"
+            />
           </div>
         </div>
       </div>
@@ -179,7 +278,9 @@ const ClientGrid = defineAsyncComponent(() => import("./ClientGrid.vue"));
 const ClientList = defineAsyncComponent(() => import("./ClientList.vue"));
 const flatPickr = defineAsyncComponent(() => import("vue-flatpickr-component"));
 
-const InfiniteLoading = defineAsyncComponent(() => import("v3-infinite-loading"));
+const InfiniteLoading = defineAsyncComponent(() =>
+  import("v3-infinite-loading")
+);
 
 import "flatpickr/dist/flatpickr.css";
 
@@ -208,22 +309,23 @@ export default {
       page: 1,
       form: {
         id: "",
-        employee_id: "",
+        client_id: "",
         first_name: "",
         last_name: "",
         email: "",
         phone_number: "",
-        password: "",
-        department_id: "",
-        designation_id: "",
         joining_date: "",
-        send_password: false,
+        state: "",
+        country: "",
+        postal_code: "",
+        address: "",
+        city: "",
+        organization: "",
+        website: "",
       },
     };
   },
-  created() {
-    //this.getClints();
-  },
+  created() {},
 
   methods: {
     async infiniteHandler($state) {
@@ -241,14 +343,38 @@ export default {
         });
       this.page++;
     },
+    store() {
+      this.beforeSend();
+      this.form.modules = this.modules;
+      let send = null;
+      if (this.isEdit) {
+        send = http.put(`/client/${this.form.id}`, this.form);
+      } else {
+        send = http.post("/client", this.form);
+      }
+      send
+        .then((res) => {
+          this.getSuccess(res);
+          this.form = {};
+          this.showMadal();
+          this.clients.push(res.data.data);
+        })
+        .catch((error) => {
+          this.handleErrors(error);
+        });
+    },
 
-    cdelete(index, employee_id) {
+    cdelete(index, client_id) {
       this.deleteInfo().then((result) => {
         if (result.isConfirmed) {
-          http.delete(`/employee/${employee_id}`).then((res) => {
-            this.employees.data.splice(index, 1);
-            this.getSuccess(res);
-          });
+          http.delete(`/client/${client_id}`).then((res) => {
+            if (res.data.status === true) {
+              this.clients.splice(index, 1);
+              this.getSuccess(res);
+            }
+          }).catch((error) =>{
+			console.log(error)
+		  })
         }
       });
     },
@@ -258,28 +384,22 @@ export default {
       this.showMadal();
     },
     closeModal() {
-      const errorElement = document.querySelector(".filed-error");
-      if (errorElement) {
-        errorElement.remove();
-      }
+      this.removeErrorFiled();
       this.modalShow = !this.modalShow;
     },
     edit(client_id) {
-      this.showMadal();
-      //   this.modalTitle = "Update Client";
-      //   this.isEdit = true;
-      //   http
-      //     .get(`employee/${employee_id}`)
-      //     .then((response) => {
-      //       this.showMadal();
-      //       this.form = response.data.data;
-      //       if (response.data.data.modules.length > 0) {
-      //         this.modules = response.data.data.modules;
-      //       } else {
-      //         this.getModules();
-      //       }
-      //     })
-      //     .catch(() => {});
+		
+      this.modalTitle = "Update Client";
+      this.isEdit = true;
+      http
+        .get(`client/${client_id}`)
+        .then((response) => {
+          if (response.data.status === true) {
+            this.showMadal();
+            this.form = response.data.data;
+          }
+        })
+        .catch(() => {});
     },
     showMadal() {
       this.modalShow = !this.modalShow;

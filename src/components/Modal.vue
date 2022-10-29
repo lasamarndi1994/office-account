@@ -9,7 +9,7 @@
           
             @click="closeModal"
             class="close"
-            data-bs-dismiss="modal"
+         
             aria-label="Close"
           >
           </button>

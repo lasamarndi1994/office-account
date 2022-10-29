@@ -300,7 +300,6 @@
       </div>
     </form>
   </v-modal>
-  
 </template>
 <script>
 import { defineAsyncComponent } from "vue";
@@ -375,7 +374,7 @@ export default {
       this.deleteInfo().then((result) => {
         if (result.isConfirmed) {
           http.delete(`/employee/${employee_id}`).then((res) => {
-            this.employees.data.splice(index, 1);
+            this.employees.splice(index, 1);
             this.getSuccess(res);
           });
         }
@@ -406,7 +405,6 @@ export default {
         .then((res) => {
           if (res.data.data.length > 0) {
             this.employees.push(...res.data.data);
-			
           } else {
             $state.complete();
           }
@@ -438,10 +436,7 @@ export default {
       this.showMadal();
     },
     closeModal() {
-      const errorElement = document.querySelector(".filed-error");
-      if (errorElement) {
-        errorElement.remove();
-      }
+      this.removeErrorFiled();
       this.modalShow = !this.modalShow;
     },
     edit(employee_id) {

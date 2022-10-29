@@ -1,6 +1,14 @@
 https://smarthr.dreamguystech.com/maroon/assets.html
 https://smarthr.dreamguystech.com/template/admin-dashboard.html
 
+http://www.vue-tags-input.com/#/examples/autocomplete
+
+
+https://github.com/SortableJS/vue.draggable.next
+
 Font Awesome 5 Free admin@heyblinds.ca
 
 WBu@}Lju@N4C3v3M
+
+https://github.com/axios/axios/blob/main/examples/upload/index.html
+https://www.bezkoder.com/react-file-upload-axios/

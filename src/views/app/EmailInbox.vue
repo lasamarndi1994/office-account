@@ -155,7 +155,7 @@
                     <button
                       type="button"
                       title=""
-                      data-bs-toggle="tooltip"
+                       v-tooltip
                       class="btn btn-white d-none d-md-inline-block m-r-5"
                       data-bs-original-title="Refresh"
                       aria-label="Refresh"

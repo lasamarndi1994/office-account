@@ -3,7 +3,7 @@
 	  <div class="page-header">
 		<div class="row">
 		  <div class="col-sm-12">
-			<h3 class="page-title">Hospital Admin</h3>
+			<h3 class="page-title" contenteditable="true">Hospital Admin</h3>
 			<ul class="breadcrumb">
 			  <li class="breadcrumb-item">
 				<a href="admin-dashboard.html">Dashboard</a>
@@ -44,8 +44,6 @@
 				  <a
 					href=""
 					class="avatar-title rounded-circle border border-white"
-					data-bs-toggle="modal"
-					data-bs-target="#assign_leader"
 					><i class="fa fa-plus"></i
 				  ></a>
 				</div>
@@ -92,8 +90,6 @@
 		  <a
 			href="#"
 			class="btn btn-white float-end ms-2"
-			data-bs-toggle="modal"
-			data-bs-target="#add_task_board"
 			><i class="fa fa-plus"></i> Create List</a
 		  >
 		  <router-link
@@ -138,8 +134,6 @@
 					<a
 					  class="dropdown-item"
 					  href="#"
-					  data-bs-toggle="modal"
-					  data-bs-target="#edit_task_board"
 					  >Edit</a
 					>
 					<a class="dropdown-item" href="#">Delete</a>
@@ -153,14 +147,11 @@
 				  group="people"
 				  @change="log"
 				  itemKey="id"
-				  @start="drag=true" 
-  				@end="drag=false" 
-				  :move="checkMove"
-				 
-				
+				  @start="drag = true"
+				  @end="drag = false"
+				  style="min-height:30px"
 				>
 				  <template #item="{ element }">
-					
 					<div class="card panel">
 					  <div class="kanban-box">
 						<div class="task-board-header">
@@ -237,14 +228,12 @@
 	</div>
   </template>
   <script>
-	  import { defineAsyncComponent } from "vue";
-	  const draggable = defineAsyncComponent(() => import("vuedraggable"));
-
+  import { defineAsyncComponent } from "vue";
+  const draggable = defineAsyncComponent(() => import("vuedraggable"));
   
   export default {
-	
 	components: {
-	  draggable
+	  draggable,
 	},
 	data() {
 	  return {
@@ -283,19 +272,35 @@
 			  },
 			],
 		  },
+		  {
+			name: "Devlopment",
+			color: "kanban-info",
+			data: [
+			  {
+				id: 5,
+				name: "progress Website redesign",
+				status: "progress",
+			  },
+			  {
+				id: 6,
+				name: "progress Website redesign",
+				status: "progress",
+			  },
+			],
+		  },
 		],
-		
 	  };
 	},
 	methods: {
-		checkMove: function(evt){
+	  checkMove: function (evt) {
 		//	console.log(evt.draggedContext.element.id !==2)
-   		// return (evt.draggedContext.element.id!==2);
-	},
-	  
-	  log: function(evt) {
+		// return (evt.draggedContext.element.id!==2);
+	  },
+  
+	  log: function (evt) {
 		window.console.log(evt);
-	  }
-	}
+	  },
+	},
   };
   </script>
+  

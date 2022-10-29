@@ -24,7 +24,7 @@
                   <a
                     href="profile.html"
                     title="Lesley Grauer"
-                    data-bs-toggle="tooltip"
+                     v-tooltip
                     class="avatar"
                   >
                     <img src="/img/avatar.jpg" alt="" />
@@ -44,7 +44,7 @@
                     href="profile.html"
                     class="avatar"
                     title="Jeffery Lalor"
-                    data-bs-toggle="tooltip"
+                     v-tooltip
                   >
                     <img src="/img/avatar.jpg" alt="" />
                   </a>
@@ -64,7 +64,7 @@
                   <a
                     href="profile.html"
                     title="Catherine Manseau"
-                    data-bs-toggle="tooltip"
+                     v-tooltip
                     class="avatar"
                   >
                     <img src="/img/avatar.jpg" alt="" />
@@ -84,7 +84,7 @@
                   <a
                     href="#"
                     title="Bernardo Galaviz"
-                    data-bs-toggle="tooltip"
+                     v-tooltip
                     class="avatar"
                   >
                     <img src="/img/avatar.jpg" alt="" />
@@ -104,7 +104,7 @@
                   <a
                     href="profile.html"
                     title="Mike Litorus"
-                    data-bs-toggle="tooltip"
+                     v-tooltip
                     class="avatar"
                   >
                     <img src="/img/avatar.jpg" alt="" />
@@ -124,7 +124,7 @@
                   <a
                     href="profile.html"
                     title="Jeffery Lalor"
-                    data-bs-toggle="tooltip"
+                     v-tooltip
                     class="avatar"
                   >
                     <img src="/img/avatar.jpg" alt="" />

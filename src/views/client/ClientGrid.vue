@@ -16,12 +16,12 @@
             ><i class="material-icons">more_vert</i></a
           >
           <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item cursor" @click="editClient"
+            <a class="dropdown-item cursor" @click="editClient(client.id)"
               ><i class="fa fa-pencil m-r-5"></i> Edit</a
             >
             <a
-              class="dropdown-item"
-              href="#"
+              class="dropdown-item cursor"
+			  @click="deleteClient(index,client.id)"
               ><i class="fa fa-trash-o m-r-5"></i> Delete</a
             >
           </div>
@@ -50,11 +50,11 @@ export default {
 		clients:Array
 	},
   methods: {
-    deleteClient(index, employee_id) {
-      this.$emit("delete", index, employee_id);
+    deleteClient(index, client_id) {
+      this.$emit("delete", index, client_id);
     },
-    editClient() {
-      this.$emit("edit");
+    editClient(client_id) {
+      this.$emit("edit",client_id);
     },
   },
 };

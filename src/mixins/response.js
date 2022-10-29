@@ -1,6 +1,6 @@
 import { useToast } from "vue-toastification";
 
-const responseMixin = {
+export default{
 	setup() {
 		// Get toast interface
 		const toast = useToast();
@@ -18,6 +18,13 @@ const responseMixin = {
 			const errorElement = document.querySelector(".filed-error");
 			if (errorElement) {
 				errorElement.remove();
+			}
+		},
+		removeErrorFiled() {
+			const errorElement = document.getElementsByClassName("filed-error");
+			let length = errorElement.length;
+			for (let i = 0; i < length; i++) {
+				document.querySelector(".filed-error").remove();
 			}
 		},
 		deleteInfo() {
@@ -78,4 +85,3 @@ const responseMixin = {
 		}
 	}
 }
-export default responseMixin;

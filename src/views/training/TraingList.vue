@@ -49,11 +49,11 @@
                                 <td>
                                     <ul class="team-members">
                                         <li>
-                                            <a href="#" title="Bernardo Galaviz" data-bs-toggle="tooltip"><img alt=""
+                                            <a href="#" title="Bernardo Galaviz"  v-tooltip><img alt=""
                                                     src="/img/avatar.jpg"></a>
                                         </li>
                                         <li>
-                                            <a href="#" title="Richard Miles" data-bs-toggle="tooltip"><img alt=""
+                                            <a href="#" title="Richard Miles"  v-tooltip><img alt=""
                                                     src="/img/avatar.jpg"></a>
                                         </li>
                                         <li class="dropdown avatar-dropdown">
@@ -156,11 +156,11 @@
                                 <td>
                                     <ul class="team-members">
                                         <li>
-                                            <a href="#" title="John Doe" data-bs-toggle="tooltip"><img alt=""
+                                            <a href="#" title="John Doe"  v-tooltip><img alt=""
                                                     src="/img/avatar.jpg"></a>
                                         </li>
                                         <li>
-                                            <a href="#" title="Richard Miles" data-bs-toggle="tooltip"><img alt=""
+                                            <a href="#" title="Richard Miles"  v-tooltip><img alt=""
                                                     src="/img/avatar.jpg"></a>
                                         </li>
                                         <li class="dropdown avatar-dropdown">
@@ -263,11 +263,11 @@
                                 <td>
                                     <ul class="team-members">
                                         <li>
-                                            <a href="#" title="Bernardo Galaviz" data-bs-toggle="tooltip"><img alt=""
+                                            <a href="#" title="Bernardo Galaviz"  v-tooltip><img alt=""
                                                     src="/img/avatar.jpg"></a>
                                         </li>
                                         <li>
-                                            <a href="#" title="Richard Miles" data-bs-toggle="tooltip"><img alt=""
+                                            <a href="#" title="Richard Miles"  v-tooltip><img alt=""
                                                     src="/img/avatar.jpg"></a>
                                         </li>
                                         <li class="dropdown avatar-dropdown">
@@ -370,11 +370,11 @@
                                 <td>
                                     <ul class="team-members">
                                         <li>
-                                            <a href="#" title="Bernardo Galaviz" data-bs-toggle="tooltip"><img alt=""
+                                            <a href="#" title="Bernardo Galaviz"  v-tooltip><img alt=""
                                                     src="/img/avatar.jpg"></a>
                                         </li>
                                         <li>
-                                            <a href="#" title="Richard Miles" data-bs-toggle="tooltip"><img alt=""
+                                            <a href="#" title="Richard Miles"  v-tooltip><img alt=""
                                                     src="/img/avatar.jpg"></a>
                                         </li>
                                         <li class="dropdown avatar-dropdown">
@@ -477,11 +477,11 @@
                                 <td>
                                     <ul class="team-members">
                                         <li>
-                                            <a href="#" title="Bernardo Galaviz" data-bs-toggle="tooltip"><img alt=""
+                                            <a href="#" title="Bernardo Galaviz"  v-tooltip><img alt=""
                                                     src="/img/avatar.jpg"></a>
                                         </li>
                                         <li>
-                                            <a href="#" title="Richard Miles" data-bs-toggle="tooltip"><img alt=""
+                                            <a href="#" title="Richard Miles"  v-tooltip><img alt=""
                                                     src="/img/avatar.jpg"></a>
                                         </li>
                                         <li class="dropdown avatar-dropdown">

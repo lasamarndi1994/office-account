@@ -327,7 +327,7 @@
                             <div class="form-group">
                                 <label>Ticket Assignee</label>
                                 <div class="project-members">
-                                    <a title="John Smith" data-placement="top" data-bs-toggle="tooltip" href="#" class="avatar">
+                                    <a title="John Smith" data-placement="top"  v-tooltip href="#" class="avatar">
                                     <img src="/img/avatar.jpg" alt="">
                                     </a>
                                 </div>
@@ -345,16 +345,16 @@
                             <div class="form-group">
                                 <label>Ticket Followers</label>
                                 <div class="project-members">
-                                    <a title="Richard Miles" data-bs-toggle="tooltip" href="#" class="avatar">
+                                    <a title="Richard Miles"  v-tooltip href="#" class="avatar">
                                     <img src="/img/avatar.jpg" alt="">
                                     </a>
-                                    <a title="John Smith" data-bs-toggle="tooltip" href="#" class="avatar">
+                                    <a title="John Smith"  v-tooltip href="#" class="avatar">
                                     <img src="/img/avatar.jpg" alt="">
                                     </a>
-                                    <a title="Mike Litorus" data-bs-toggle="tooltip" href="#" class="avatar">
+                                    <a title="Mike Litorus"  v-tooltip href="#" class="avatar">
                                     <img src="/img/avatar.jpg" alt="">
                                     </a>
-                                    <a title="Wilmer Deluna" data-bs-toggle="tooltip" href="#" class="avatar">
+                                    <a title="Wilmer Deluna"  v-tooltip href="#" class="avatar">
                                     <img src="/img/avatar.jpg" alt="">
                                     </a>
                                     <span class="all-team">+2</span>
@@ -458,7 +458,7 @@
                             <div class="form-group">
                                 <label>Ticket Assignee</label>
                                 <div class="project-members">
-                                    <a title="John Smith" data-placement="top" data-bs-toggle="tooltip" href="#" class="avatar">
+                                    <a title="John Smith" data-placement="top"  v-tooltip href="#" class="avatar">
                                     <img src="/img/avatar.jpg" alt="">
                                     </a>
                                 </div>
@@ -476,16 +476,16 @@
                             <div class="form-group">
                                 <label>Ticket Followers</label>
                                 <div class="project-members">
-                                    <a title="Richard Miles" data-bs-toggle="tooltip" href="#" class="avatar">
+                                    <a title="Richard Miles"  v-tooltip href="#" class="avatar">
                                     <img src="/img/avatar.jpg" alt="">
                                     </a>
-                                    <a title="John Smith" data-bs-toggle="tooltip" href="#" class="avatar">
+                                    <a title="John Smith"  v-tooltip href="#" class="avatar">
                                     <img src="/img/avatar.jpg" alt="">
                                     </a>
-                                    <a title="Mike Litorus" data-bs-toggle="tooltip" href="#" class="avatar">
+                                    <a title="Mike Litorus"  v-tooltip href="#" class="avatar">
                                     <img src="/img/avatar.jpg" alt="">
                                     </a>
-                                    <a title="Wilmer Deluna" data-bs-toggle="tooltip" href="#" class="avatar">
+                                    <a title="Wilmer Deluna"  v-tooltip href="#" class="avatar">
                                     <img src="/img/avatar.jpg" alt="">
                                     </a>
                                     <span class="all-team">+2</span>

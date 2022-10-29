@@ -14,6 +14,9 @@ const options = {
 import httpClient  from  './service/http';
 window.http = httpClient;
 
+import { tooltip } from './tooltip';
+
+
 
 const VueSubmit = defineAsyncComponent(() =>
   import('./components/VueSubmit.vue')
@@ -32,14 +35,17 @@ const sweetOptions = {
 	cancelButtonColor: '#ff7674',
   };
 
-import bundle from 'bootstrap/dist/js/bootstrap.bundle'
+
 
 
 import App from './App.vue'
 import router from './router'
 
-import './assets/main.css'
+
 import responseMixin from './mixins/response';
+
+// import bundle from 'bootstrap/dist/js/bootstrap.bundle'
+import './assets/main.css'
 
 const app = createApp(App)
 app.component("v-submit", VueSubmit);
@@ -51,8 +57,9 @@ app.use(router)
 app.use(vueSweetalert,sweetOptions);
 
 app.use(Toast, options)
+app.directive('tooltip', tooltip)
+
 
 app.mixin(responseMixin)
 //app.provide('http',httpClient)
-app.use(bundle)
 app.mount('#app')

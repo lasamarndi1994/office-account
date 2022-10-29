@@ -86,7 +86,7 @@
                       <a
                         href="#"
                         title=""
-                        data-bs-toggle="tooltip"
+                         v-tooltip
                         data-original-title="John Doe"
                         ><img alt="" src="/img/avatar.jpg"
                       /></a>
@@ -95,7 +95,7 @@
                       <a
                         href="#"
                         title=""
-                        data-bs-toggle="tooltip"
+                         v-tooltip
                         data-original-title="Richard Miles"
                         ><img alt="" src="/img/avatar.jpg"
                       /></a>
@@ -104,7 +104,7 @@
                       <a
                         href="#"
                         title=""
-                        data-bs-toggle="tooltip"
+                         v-tooltip
                         data-original-title="John Smith"
                         ><img alt="" src="/img/avatar.jpg"
                       /></a>
@@ -113,7 +113,7 @@
                       <a
                         href="#"
                         title=""
-                        data-bs-toggle="tooltip"
+                         v-tooltip
                         data-original-title="Mike Litorus"
                         ><img alt="" src="/img/avatar.jpg"
                       /></a>
@@ -152,7 +152,7 @@
                       <a
                         href="#"
                         title=""
-                        data-bs-toggle="tooltip"
+                         v-tooltip
                         data-original-title="John Doe"
                         ><img alt="" src="/img/avatar.jpg"
                       /></a>
@@ -161,7 +161,7 @@
                       <a
                         href="#"
                         title=""
-                        data-bs-toggle="tooltip"
+                         v-tooltip
                         data-original-title="Richard Miles"
                         ><img alt="" src="/img/avatar.jpg"
                       /></a>
@@ -170,7 +170,7 @@
                       <a
                         href="#"
                         title=""
-                        data-bs-toggle="tooltip"
+                         v-tooltip
                         data-original-title="John Smith"
                         ><img alt="" src="/img/avatar.jpg"
                       /></a>
@@ -179,7 +179,7 @@
                       <a
                         href="#"
                         title=""
-                        data-bs-toggle="tooltip"
+                         v-tooltip
                         data-original-title="Mike Litorus"
                         ><img alt="" src="/img/avatar.jpg"
                       /></a>

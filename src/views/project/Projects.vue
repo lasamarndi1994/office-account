@@ -1,789 +1,528 @@
 <template>
-    <div class="content container-fluid">
+  <div class="content container-fluid">
     <div class="page-header">
-        <div class="row align-items-center">
-            <div class="col">
-                <h3 class="page-title">Projects</h3>
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="admin-dashboard.html">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Projects</li>
-                </ul>
-            </div>
-            <div class="col-auto float-end ms-auto">
-                <a href="#" class="btn add-btn" data-bs-toggle="modal" data-bs-target="#create_project"><i class="fa fa-plus"></i> Create Project</a>
-                <div class="view-icons">
-                    <a href="projects.html" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
-                    <a href="project-list.html" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
-                </div>
-            </div>
+      <div class="row align-items-center">
+        <div class="col">
+          <h3 class="page-title">Projects</h3>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="admin-dashboard.html">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Projects</li>
+          </ul>
         </div>
+        <div class="col-auto float-end ms-auto">
+          <button class="btn add-btn" @click="addProject">
+            <i class="fa fa-plus"></i> Create Project
+          </button>
+          <div class="view-icons">
+            <button
+              type="button"
+              @click="showStatus = !showStatus"
+              class="grid-view btn btn-link active"
+            >
+              <i :class="changeDisplay"></i>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="row filter-row">
-        <div class="col-sm-6 col-md-3">
-            <div class="form-group form-focus">
-                <input type="text" class="form-control floating">
-                <label class="focus-label">Project Name</label>
-            </div>
+      <div class="col-sm-6 col-md-3">
+        <div class="form-group form-focus">
+          <input type="text" class="form-control floating" />
+          <label class="focus-label">Project Name</label>
         </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="form-group form-focus">
-                <input type="text" class="form-control floating">
-                <label class="focus-label">Employee Name</label>
-            </div>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <div class="form-group form-focus">
+          <input type="text" class="form-control floating" />
+          <label class="focus-label">Employee Name</label>
         </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="form-group form-focus select-focus">
-                <select class="select form-control floating">
-                    <option>Select Roll</option>
-                    <option>Web Developer</option>
-                    <option>Web Designer</option>
-                    <option>Android Developer</option>
-                    <option>Ios Developer</option>
-                </select>
-                <label class="focus-label">Designation</label>
-            </div>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <div class="form-group form-focus select-focus">
+          <select class="select form-control floating">
+            <option>Select Roll</option>
+            <option>Web Developer</option>
+            <option>Web Designer</option>
+            <option>Android Developer</option>
+            <option>Ios Developer</option>
+          </select>
+          <label class="focus-label">Designation</label>
         </div>
-        <div class="col-sm-6 col-md-3">
-            <a href="#" class="btn btn-success w-100"> Search </a>
-        </div>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <a href="#" class="btn btn-success w-100"> Search </a>
+      </div>
     </div>
-    <div class="row">
-        <div class="col-lg-4 col-sm-6 col-md-4 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="dropdown dropdown-action profile-action">
-                        <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_project"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_project"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                        </div>
-                    </div>
-                    <h4 class="project-title"><a href="project-view.html">Office Management</a></h4>
-                    <small class="block text-ellipsis m-b-15">
-                    <span class="text-xs">1</span> <span class="text-muted">open tasks, </span>
-                    <span class="text-xs">9</span> <span class="text-muted">tasks completed</span>
-                    </small>
-                    <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. When an unknown printer took a galley of type and
-                        scrambled it...
-                    </p>
-                    <div class="pro-deadline m-b-15">
-                        <div class="sub-title">
-                            Deadline:
-                        </div>
-                        <div class="text-muted">
-                            17 Apr 2019
-                        </div>
-                    </div>
-                    <div class="project-members m-b-15">
-                        <div>Project Leader :</div>
-                        <ul class="team-members">
-                            <li>
-                                <a href="#" data-bs-toggle="tooltip" title="Jeffery Lalor"><img alt="" src="/img/avatar.jpg"></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="project-members m-b-15">
-                        <div>Team :</div>
-                        <ul class="team-members">
-                            <li>
-                                <a href="#" data-bs-toggle="tooltip" title="John Doe"><img alt="" src="/img/avatar.jpg"></a>
-                            </li>
-                            <li>
-                                <a href="#" data-bs-toggle="tooltip" title="Richard Miles"><img alt="" src="/img/avatar.jpg"></a>
-                            </li>
-                            <li>
-                                <a href="#" data-bs-toggle="tooltip" title="John Smith"><img alt="" src="/img/avatar.jpg"></a>
-                            </li>
-                            <li>
-                                <a href="#" data-bs-toggle="tooltip" title="Mike Litorus"><img alt="" src="/img/avatar.jpg"></a>
-                            </li>
-                            <li class="dropdown avatar-dropdown">
-                                <a href="#" class="all-users dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">+15</a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <div class="avatar-group">
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="avatar-pagination">
-                                        <ul class="pagination">
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">«</span>
-                                                <span class="visually-hidden">Previous</span>
-                                                </a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">»</span>
-                                                <span class="visually-hidden">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <p class="m-b-5">Progress <span class="text-success float-end">40%</span></p>
-                    <div class="progress progress-xs mb-0">
-                        <div class="progress-bar bg-success" role="progressbar" data-bs-toggle="tooltip" title="40%" style="width: 40%"></div>
-                    </div>
-                </div>
-            </div>
+    <project-grid v-if="showStatus" :projects="projects" @edit="edit" />
+    <project-list
+      v-else
+      :projects="projects"
+      @showModal="showMadal"
+      @edit="edit"
+    />
+  </div>
+  <v-modal
+    :modalShow="modalShow"
+    @closeModal="closeModal"
+    :modalTitle="modalTitle"
+  >
+    <form @submit.prevent="store">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Project Name</label>
+            <input
+              class="form-control"
+              type="text"
+              id="project_name"
+              v-model="form.project_name"
+            />
+          </div>
         </div>
-        <div class="col-lg-4 col-sm-6 col-md-4 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="dropdown dropdown-action profile-action">
-                        <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_project"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_project"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                        </div>
-                    </div>
-                    <h4 class="project-title"><a href="project-view.html">Project Management</a></h4>
-                    <small class="block text-ellipsis m-b-15">
-                    <span class="text-xs">2</span> <span class="text-muted">open tasks, </span>
-                    <span class="text-xs">5</span> <span class="text-muted">tasks completed</span>
-                    </small>
-                    <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. When an unknown printer took a galley of type and
-                        scrambled it...
-                    </p>
-                    <div class="pro-deadline m-b-15">
-                        <div class="sub-title">
-                            Deadline:
-                        </div>
-                        <div class="text-muted">
-                            17 Apr 2019
-                        </div>
-                    </div>
-                    <div class="project-members m-b-15">
-                        <div>Project Leader :</div>
-                        <ul class="team-members">
-                            <li>
-                                <a href="#" data-bs-toggle="tooltip" title="Jeffery Lalor"><img alt="" src="/img/avatar.jpg"></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="project-members m-b-15">
-                        <div>Team :</div>
-                        <ul class="team-members">
-                            <li>
-                                <a href="#" data-bs-toggle="tooltip" title="John Doe"><img alt="" src="/img/avatar.jpg"></a>
-                            </li>
-                            <li>
-                                <a href="#" data-bs-toggle="tooltip" title="Richard Miles"><img alt="" src="/img/avatar.jpg"></a>
-                            </li>
-                            <li>
-                                <a href="#" data-bs-toggle="tooltip" title="John Smith"><img alt="" src="/img/avatar.jpg"></a>
-                            </li>
-                            <li>
-                                <a href="#" data-bs-toggle="tooltip" title="Mike Litorus"><img alt="" src="/img/avatar.jpg"></a>
-                            </li>
-                            <li class="dropdown avatar-dropdown">
-                                <a href="#" class="all-users dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">+15</a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <div class="avatar-group">
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="avatar-pagination">
-                                        <ul class="pagination">
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">«</span>
-                                                <span class="visually-hidden">Previous</span>
-                                                </a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">»</span>
-                                                <span class="visually-hidden">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <p class="m-b-5">Progress <span class="text-success float-end">40%</span></p>
-                    <div class="progress progress-xs mb-0">
-                        <div class="progress-bar bg-success" role="progressbar" data-bs-toggle="tooltip" title="40%" style="width: 40%"></div>
-                    </div>
-                </div>
-            </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Client</label>
+            <Multiselect
+              placeholder="Select client"
+              v-model="form.client_id"
+              mode="single"
+              :close-on-select="true"
+              :searchable="true"
+              @search-change="getClient"
+              valueProp="id"
+              label="name"
+              trackBy="name"
+              :create-option="false"
+              :options="clients"
+              @open="multiSelectOpen"
+            />
+          </div>
+          <div id="client_id" class="m-b-10"></div>
         </div>
-        <div class="col-lg-4 col-sm-6 col-md-4 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="dropdown dropdown-action profile-action">
-                        <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_project"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_project"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                        </div>
-                    </div>
-                    <h4 class="project-title"><a href="project-view.html">Video Calling App</a></h4>
-                    <small class="block text-ellipsis m-b-15">
-                    <span class="text-xs">3</span> <span class="text-muted">open tasks, </span>
-                    <span class="text-xs">3</span> <span class="text-muted">tasks completed</span>
-                    </small>
-                    <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. When an unknown printer took a galley of type and
-                        scrambled it...
-                    </p>
-                    <div class="pro-deadline m-b-15">
-                        <div class="sub-title">
-                            Deadline:
-                        </div>
-                        <div class="text-muted">
-                            17 Apr 2019
-                        </div>
-                    </div>
-                    <div class="project-members m-b-15">
-                        <div>Project Leader :</div>
-                        <ul class="team-members">
-                            <li>
-                                <a href="#" data-bs-toggle="tooltip" title="Jeffery Lalor"><img alt="" src="/img/avatar.jpg"></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="project-members m-b-15">
-                        <div>Team :</div>
-                        <ul class="team-members">
-                            <li>
-                                <a href="#" data-bs-toggle="tooltip" title="John Doe"><img alt="" src="/img/avatar.jpg"></a>
-                            </li>
-                            <li>
-                                <a href="#" data-bs-toggle="tooltip" title="Richard Miles"><img alt="" src="/img/avatar.jpg"></a>
-                            </li>
-                            <li>
-                                <a href="#" data-bs-toggle="tooltip" title="John Smith"><img alt="" src="/img/avatar.jpg"></a>
-                            </li>
-                            <li>
-                                <a href="#" data-bs-toggle="tooltip" title="Mike Litorus"><img alt="" src="/img/avatar.jpg"></a>
-                            </li>
-                            <li class="dropdown avatar-dropdown">
-                                <a href="#" class="all-users dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">+15</a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <div class="avatar-group">
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="avatar-pagination">
-                                        <ul class="pagination">
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">«</span>
-                                                <span class="visually-hidden">Previous</span>
-                                                </a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">»</span>
-                                                <span class="visually-hidden">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <p class="m-b-5">Progress <span class="text-success float-end">40%</span></p>
-                    <div class="progress progress-xs mb-0">
-                        <div class="progress-bar bg-success" role="progressbar" data-bs-toggle="tooltip" title="40%" style="width: 40%"></div>
-                    </div>
-                </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Start Date</label>
+            <div class="cal-icon">
+              <flat-pickr
+                v-model="form.start_date"
+                id="start_date"
+                class="form-control datetimepicker"
+                placeholder="YYYY-MM-DD"
+              />
             </div>
+          </div>
         </div>
-        <div class="col-lg-4 col-sm-6 col-md-4 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="dropdown dropdown-action profile-action">
-                        <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_project"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_project"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                        </div>
-                    </div>
-                    <h4 class="project-title"><a href="project-view.html">Hospital Administration</a></h4>
-                    <small class="block text-ellipsis m-b-15">
-                    <span class="text-xs">12</span> <span class="text-muted">open tasks, </span>
-                    <span class="text-xs">4</span> <span class="text-muted">tasks completed</span>
-                    </small>
-                    <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. When an unknown printer took a galley of type and
-                        scrambled it...
-                    </p>
-                    <div class="pro-deadline m-b-15">
-                        <div class="sub-title">
-                            Deadline:
-                        </div>
-                        <div class="text-muted">
-                            17 Apr 2019
-                        </div>
-                    </div>
-                    <div class="project-members m-b-15">
-                        <div>Project Leader :</div>
-                        <ul class="team-members">
-                            <li>
-                                <a href="#" data-bs-toggle="tooltip" title="Jeffery Lalor"><img alt="" src="/img/avatar.jpg"></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="project-members m-b-15">
-                        <div>Team :</div>
-                        <ul class="team-members">
-                            <li>
-                                <a href="#" data-bs-toggle="tooltip" title="John Doe"><img alt="" src="/img/avatar.jpg"></a>
-                            </li>
-                            <li>
-                                <a href="#" data-bs-toggle="tooltip" title="Richard Miles"><img alt="" src="/img/avatar.jpg"></a>
-                            </li>
-                            <li>
-                                <a href="#" data-bs-toggle="tooltip" title="John Smith"><img alt="" src="/img/avatar.jpg"></a>
-                            </li>
-                            <li>
-                                <a href="#" data-bs-toggle="tooltip" title="Mike Litorus"><img alt="" src="/img/avatar.jpg"></a>
-                            </li>
-                            <li class="dropdown avatar-dropdown">
-                                <a href="#" class="all-users dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">+15</a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <div class="avatar-group">
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                        <a class="avatar avatar-xs" href="#">
-                                        <img alt="" src="/img/avatar.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="avatar-pagination">
-                                        <ul class="pagination">
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">«</span>
-                                                <span class="visually-hidden">Previous</span>
-                                                </a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">»</span>
-                                                <span class="visually-hidden">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <p class="m-b-5">Progress <span class="text-success float-end">40%</span></p>
-                    <div class="progress progress-xs mb-0">
-                        <div class="progress-bar bg-success" role="progressbar" data-bs-toggle="tooltip" title="40%" style="width: 40%"></div>
-                    </div>
-                </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>End Date</label>
+            <div class="cal-icon">
+              <flat-pickr
+                v-model="form.end_date"
+                id="end_date"
+                class="form-control datetimepicker"
+                placeholder="YYYY-MM-DD"
+              />
             </div>
+          </div>
         </div>
-    </div>
-</div>
-<div id="create_project" class="modal custom-modal fade" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Create Project</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Project Name</label>
-                                <input class="form-control" type="text">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Client</label>
-                                <select class="select">
-                                    <option>Global Technologies</option>
-                                    <option>Delta Infotech</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Start Date</label>
-                                <div class="cal-icon">
-                                    <input class="form-control datetimepicker" type="text">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>End Date</label>
-                                <div class="cal-icon">
-                                    <input class="form-control datetimepicker" type="text">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label>Rate</label>
-                                <input placeholder="$50" class="form-control" type="text">
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label>&nbsp;</label>
-                                <select class="select">
-                                    <option>Hourly</option>
-                                    <option>Fixed</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Priority</label>
-                                <select class="select">
-                                    <option>High</option>
-                                    <option>Medium</option>
-                                    <option>Low</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Add Project Leader</label>
-                                <input class="form-control" type="text">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Team Leader</label>
-                                <div class="project-members">
-                                    <a href="#" data-bs-toggle="tooltip" title="Jeffery Lalor" class="avatar">
-                                    <img src="/img/avatar.jpg" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Add Team</label>
-                                <input class="form-control" type="text">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Team Members</label>
-                                <div class="project-members">
-                                    <a href="#" data-bs-toggle="tooltip" title="John Doe" class="avatar">
-                                    <img src="/img/avatar.jpg" alt="">
-                                    </a>
-                                    <a href="#" data-bs-toggle="tooltip" title="Richard Miles" class="avatar">
-                                    <img src="/img/avatar.jpg" alt="">
-                                    </a>
-                                    <a href="#" data-bs-toggle="tooltip" title="John Smith" class="avatar">
-                                    <img src="/img/avatar.jpg" alt="">
-                                    </a>
-                                    <a href="#" data-bs-toggle="tooltip" title="Mike Litorus" class="avatar">
-                                    <img src="/img/avatar.jpg" alt="">
-                                    </a>
-                                    <span class="all-team">+2</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Description</label>
-                        <div id="editor"></div>
-                    </div>
-                    <div class="form-group">
-                        <label>Upload Files</label>
-                        <input class="form-control" type="file">
-                    </div>
-                    <div class="submit-section">
-                        <button class="btn btn-primary submit-btn">Submit</button>
-                    </div>
-                </form>
-            </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label>Rate</label>
+            <input
+              placeholder="$50"
+              v-model="form.rate"
+              id="rate"
+              class="form-control"
+              type="text"
+            />
+          </div>
         </div>
-    </div>
-</div>
-<div id="edit_project" class="modal custom-modal fade" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Edit Project</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Project Name</label>
-                                <input class="form-control" value="Project Management" type="text">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Client</label>
-                                <select class="select">
-                                    <option>Global Technologies</option>
-                                    <option>Delta Infotech</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Start Date</label>
-                                <div class="cal-icon">
-                                    <input class="form-control datetimepicker" type="text">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>End Date</label>
-                                <div class="cal-icon">
-                                    <input class="form-control datetimepicker" type="text">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label>Rate</label>
-                                <input placeholder="$50" class="form-control" value="$5000" type="text">
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label>&nbsp;</label>
-                                <select class="select">
-                                    <option>Hourly</option>
-                                    <option selected>Fixed</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Priority</label>
-                                <select class="select">
-                                    <option selected>High</option>
-                                    <option>Medium</option>
-                                    <option>Low</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Add Project Leader</label>
-                                <input class="form-control" type="text">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Team Leader</label>
-                                <div class="project-members">
-                                    <a href="#" data-bs-toggle="tooltip" title="Jeffery Lalor" class="avatar">
-                                    <img src="/img/avatar.jpg" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Add Team</label>
-                                <input class="form-control" type="text">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Team Members</label>
-                                <div class="project-members">
-                                    <a href="#" data-bs-toggle="tooltip" title="John Doe" class="avatar">
-                                    <img src="/img/avatar.jpg" alt="">
-                                    </a>
-                                    <a href="#" data-bs-toggle="tooltip" title="Richard Miles" class="avatar">
-                                    <img src="/img/avatar.jpg" alt="">
-                                    </a>
-                                    <a href="#" data-bs-toggle="tooltip" title="John Smith" class="avatar">
-                                    <img src="/img/avatar.jpg" alt="">
-                                    </a>
-                                    <a href="#" data-bs-toggle="tooltip" title="Mike Litorus" class="avatar">
-                                    <img src="/img/avatar.jpg" alt="">
-                                    </a>
-                                    <span class="all-team">+2</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Description</label>
-                        <textarea rows="4" class="form-control" placeholder="Enter your message here"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Upload Files</label>
-                        <input class="form-control" type="file">
-                    </div>
-                    <div class="submit-section">
-                        <button class="btn btn-primary submit-btn">Save</button>
-                    </div>
-                </form>
-            </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label>&nbsp;</label>
+            <select
+              class="select form-control"
+              id="rate_type"
+              v-model="form.rate_type"
+            >
+              <option value="hourly">Hourly</option>
+              <option value="fixed">Fixed</option>
+            </select>
+          </div>
         </div>
-    </div>
-</div>
-<div class="modal custom-modal fade" id="delete_project" role="dialog">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="form-header">
-                    <h3>Delete Project</h3>
-                    <p>Are you sure want to delete?</p>
-                </div>
-                <div class="modal-btn delete-action">
-                    <div class="row">
-                        <div class="col-6">
-                            <a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
-                        </div>
-                        <div class="col-6">
-                            <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Priority</label>
+            <select
+              class="select form-control"
+              id="priority"
+              v-model="form.priority"
+            >
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
         </div>
-    </div>
-</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8"  v-show="!isEdit">
+          <div class="form-group">
+            <label>Add Project Leader</label>
+
+            <Multiselect
+              placeholder="Select team"
+              v-model="form.team_lead_id"
+              mode="tags"
+              :resolve-on-load="true"
+              :close-on-select="true"
+              :searchable="true"
+              @search-change="searchTeamLeader"
+              valueProp="id"
+              label="full_name"
+              trackBy="full_name"
+              :create-option="false"
+              :options="leaders"
+            />
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>Team Leader</label>
+            <div class="project-members">
+              <a
+                v-for="(teamLeader, index) in teamLeaders"
+                :style="index > 5 ? 'display:none' : ''"
+                :key="index"
+                v-tooltip
+                :title="teamLeader.first_name + ' ' + teamLeader.last_name"
+                class="avatar cursor"
+                @click="removeTeamLeader(index, $event)"
+              >
+                <span class="proflie-remove">
+                  <i class="fas fa-times text-danger"></i>
+                </span>
+                <img src="/img/avatar.jpg" alt="" />
+              </a>
+              <span v-if="teamLeaders.length > 5" class="all-team"
+                >+{{ teamLeaders.slice(5).length }}</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8"  v-show="!isEdit">
+          <div class="form-group" >
+            <label>Add Team</label>
+            <Multiselect
+              placeholder="Select team"
+              v-model="form.employee_id"
+              mode="tags"
+              :resolve-on-load="true"
+              :close-on-select="true"
+              :searchable="true"
+              @search-change="seachTeam"
+              valueProp="id"
+              label="full_name"
+              trackBy="full_name"
+              :create-option="false"
+			  ref="multiselect"
+              :options="teams"
+            />
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>Team Members</label>
+            <div class="project-members">
+              <a
+                v-for="(team, index) in teams"
+                :style="index > 5 ? 'display:none' : ''"
+                :key="index"
+                v-tooltip
+                :title="team.first_name + ' ' + team.last_name"
+                class="avatar cursor"
+                @click="removeTeam(index, $event)"
+              >
+                <span class="proflie-remove">
+                  <i class="fas fa-times text-danger"></i>
+                </span>
+                <img src="/img/avatar.jpg" alt="" />
+              </a>
+              <span v-if="teamLeaders.length > 5" class="all-team"
+                >+{{ teamLeaders.slice(5).length }}</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <QuillEditor
+          theme="snow"
+          style="height: 200px"
+          id="description"
+          v-model:content="QuillEditorText"
+        />
+      </div>
+      <div class="row">
+        <div class="col-auto float-end ms-auto mb-2">
+          <button
+            type="button"
+            class="btn btn-sm btn-success"
+            @click="addFileSection"
+          >
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+        <div class="card" v-for="(file, index) in fileSections" :key="index">
+          <button type="button" @click="removeFileSection(index)" class="close">
+            <i class="fas fa-times text-danger"></i>
+          </button>
+
+          <div class="form-group mt-3">
+            <label>File name</label>
+            <input class="form-control" type="text" />
+          </div>
+          <div class="form-group">
+            <label>Upload Files</label>
+            <input class="form-control" type="file" />
+          </div>
+        </div>
+      </div>
+      <div class="submit-section">
+        <v-submit :progress="progress">{{ formSumitButton }}</v-submit>
+      </div>
+    </form>
+  </v-modal>
 </template>
+<script>
+import { defineAsyncComponent } from "vue";
+const flatPickr = defineAsyncComponent(() => import("vue-flatpickr-component"));
+const ProjectGrid = defineAsyncComponent(() => import("./ProjectGrid.vue"));
+const ProjectList = defineAsyncComponent(() => import("./ProjectList.vue"));
+import Multiselect from "@vueform/multiselect";
+import { QuillEditor } from "@vueup/vue-quill";
+import "@vueup/vue-quill/dist/vue-quill.snow.css";
+import { useToast } from "vue-toastification";
+
+import "flatpickr/dist/flatpickr.css";
+
+export default {
+  setup() {
+    const toast = useToast();
+    return { toast };
+  },
+
+  components: {
+    flatPickr,
+    QuillEditor,
+    Multiselect,
+    ProjectGrid,
+    ProjectList,
+  },
+  data() {
+    return {
+      delaySearch: -1,
+      showStatus: true,
+      displayType: true,
+      projects: [],
+      progress: false,
+      QuillEditorText: "",
+      modalTitle: "Add New Project",
+      isEdit: false,
+
+      modalShow: false,
+      getTeamLeaders: [],
+      teamLeaders: [],
+      searchBox: false,
+      teamSearchBox: false,
+      getTeams: [],
+      employees: [],
+      teams: [],
+      clients: [],
+      leaders: [],
+      employee_id: "",
+      fileSections: [
+        {
+          file_name: "",
+          file: "",
+        },
+      ],
+      form: {
+        project_name: "",
+        start_date: "",
+        end_date: "",
+        client_id: "",
+        team_lead_id: [],
+        employee_id: [],
+        rate: "",
+        rate_type: "",
+        priority: "",
+        description: "",
+      },
+    };
+  },
+
+  created() {
+    http.get("/project").then((res) => {
+      this.projects = res.data.data;
+    });
+  },
+  watch: {
+    "form.client_id": function (value) {
+      http.get(`/get-client/${value}`).then((response) => {
+        this.clients = response.data.data;
+      });
+    },
+    QuillEditorText: function (value) {
+      this.form.description = value.ops[0].insert;
+    },
+  },
+
+  methods: {
+    edit(project_id) {
+		
+		//console.log(this.$refs.multiselect);
+      this.modalTitle = "Update Project";
+      this.isEdit = true;
+      http
+        .get(`project/${project_id}`)
+        .then((response) => {
+          this.form = response.data.data;
+          this.teams = response.data.data.teams;
+          this.showMadal();
+        })
+        .catch(() => {});
+    },
+    multiSelectOpen() {
+      if (this.clients.length === 0) {
+        http.get(`/client`).then((response) => {
+          this.clients = response.data.data;
+        });
+      }
+    },
+    getClient(name) {
+      http.get(`/client?name=${name}`).then((response) => {
+        this.clients = response.data.data;
+      });
+    },
+
+    store() {
+      this.beforeSend();
+      let send = null;
+      if (this.isEdit) {
+        send = http.put(`/project/${this.form.id}`, this.form);
+      } else {
+        send = http.post("/project", this.form);
+      }
+      send
+        .then((res) => {
+          this.getSuccess(res);
+          this.showMadal();
+        })
+        .catch((error) => {
+          this.handleErrors(error);
+        });
+    },
+
+    selectTeamLeader(employee) {
+      this.teamLeaders.push({
+        id: employee.id,
+        first_name: employee.first_name,
+        last_name: employee.first_name,
+      });
+      this.form.team_lead_id.push(employee.id);
+    },
+    selectTeam(employee) {
+      this.teams.push({
+        id: employee.id,
+        first_name: employee.first_name,
+        last_name: employee.first_name,
+      });
+
+      this.form.employee_id.push(employee.id);
+      console.log(this.form.employee_id);
+    },
+    searchTeamLeader(name) {
+      http.get(`/get-team-leaders?name=${name}`).then((res) => {
+        if (res.data.data.length > 0) {
+          this.leaders = res.data.data;
+        }
+      });
+    },
+    seachTeam(name) {
+      http.get(`/employee?name=${name}`).then((res) => {
+        if (res.data.data.length > 0) {
+          this.teams = res.data.data;
+		 
+        }
+      });
+    },
+    addProject() {
+      this.modalTitle = "Add New project";
+      this.isEdit = false;
+      this.showMadal();
+    },
+    closeModal() {
+      this.removeErrorFiled();
+      this.form = {};
+      this.modalShow = !this.modalShow;
+    },
+    showMadal() {
+      this.modalShow = !this.modalShow;
+    },
+    addFileSection() {
+      this.fileSections.push({
+        file_name: "",
+        file: "",
+      });
+    },
+    removeFileSection(index) {
+      this.fileSections.splice(index, 1);
+    },
+    removeTeamLeader(index, $event) {
+      this.teamLeaders.splice(index, 1);
+      const element = document.querySelector(".tooltip");
+      element.remove("show");
+    },
+    removeTeam(index, $event) {
+      this.teams.splice(index, 1);
+      const element = document.querySelector(".tooltip");
+      this.form.employee_id = this.teams;
+      element.remove("show");
+    },
+  },
+  computed: {
+    formSumitButton() {
+      return this.isEdit ? "Update" : "Save";
+    },
+    changeDisplay() {
+      return this.showStatus ? "fa fa-bars" : "fa fa-th";
+    },
+  },
+};
+</script>
+<style src="@vueform/multiselect/themes/default.css"></style>
+
+<style scoped>
+.remove-icon {
+  visibility: visible;
+}
+.proflie-remove {
+  cursor: pointer;
+  height: 0px;
+  width: 20px;
+  position: absolute;
+  bottom: 46px;
+  left: 20px;
+}
+</style>

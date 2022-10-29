@@ -515,7 +515,7 @@
                                                         <textarea style="height: 44px;" rows="4" cols="20" class="form-control" name="definition[]" placeholder="Definition" required=""></textarea>
                                                     </td>
                                                     <td style="padding-right: 0;min-width:55px;max-width:55px;width:55px;">
-                                                        <button type="button" class="btn btn-white add_competency_performance" data-bs-toggle="tooltip" data-original-title="Add Competency" style="height:44px;font-size: 16px;padding:10px 15px;" data-bs-original-title="" title=""><i class="fa fa-plus-circle"></i></button>
+                                                        <button type="button" class="btn btn-white add_competency_performance"  v-tooltip data-original-title="Add Competency" style="height:44px;font-size: 16px;padding:10px 15px;" data-bs-original-title="" title=""><i class="fa fa-plus-circle"></i></button>
                                                     </td>
                                                 </tr>
                                             </tbody>

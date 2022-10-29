@@ -905,7 +905,7 @@
                         <div
                           class="progress-bar"
                           role="progressbar"
-                          data-bs-toggle="tooltip"
+                           v-tooltip
                           title="65%"
                           style="width: 65%"
                         ></div>
@@ -948,7 +948,7 @@
                         <div
                           class="progress-bar"
                           role="progressbar"
-                          data-bs-toggle="tooltip"
+                           v-tooltip
                           title="15%"
                           style="width: 15%"
                         ></div>
@@ -989,7 +989,7 @@
                         <div
                           class="progress-bar"
                           role="progressbar"
-                          data-bs-toggle="tooltip"
+                           v-tooltip
                           title="49%"
                           style="width: 49%"
                         ></div>
@@ -1032,7 +1032,7 @@
                         <div
                           class="progress-bar"
                           role="progressbar"
-                          data-bs-toggle="tooltip"
+                           v-tooltip
                           title="88%"
                           style="width: 88%"
                         ></div>
@@ -1075,7 +1075,7 @@
                         <div
                           class="progress-bar"
                           role="progressbar"
-                          data-bs-toggle="tooltip"
+                           v-tooltip
                           title="100%"
                           style="width: 100%"
                         ></div>

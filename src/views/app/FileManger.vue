@@ -25,8 +25,11 @@
             <div class="file-pro-list">
               <div class="file-scroll">
                 <ul class="file-menu">
-                  <li class="active">
+                  <li class="active d-flex">
                     <a href="#">All Projects</a>
+                    <a href="" class="text-end"
+                      ><i class="fas fa-folder-plus"></i
+                    ></a>
                   </li>
                   <li>
                     <a href="#">Office Management</a>
@@ -39,6 +42,9 @@
                   </li>
                   <li>
                     <a href="#">Virtual Host</a>
+                  </li>
+                  <li>
+                    <a href="#">Others</a>
                   </li>
                 </ul>
                 <div class="show-more">
@@ -62,12 +68,26 @@
                 <span>File Manager</span>
                 <div class="file-options">
                   <span class="btn-file"
-                    ><input type="file" class="upload" /><i
-                      class="fa fa-upload"
-                    ></i
+                    ><input
+                      type="file"
+                      id="file"
+                      class="upload"
+                      @change="fileUpload" /><i class="fa fa-upload"></i
                   ></span>
                 </div>
               </div>
+
+              <div class="progress progress-xs">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  aria-valuenow="0"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  :style="{ width: progrssBar }"
+                ></div>
+              </div>
+
               <div class="file-content">
                 <form class="file-search">
                   <div class="input-group">
@@ -106,7 +126,7 @@
                               </div>
                             </div>
                             <div class="card-file-thumb">
-                         <i class="fas fa-file"></i>
+                              <i class="fas fa-file"></i>
                             </div>
                             <div class="card-body">
                               <h6><a href="">Sample.pdf</a></h6>
@@ -139,7 +159,7 @@
                               </div>
                             </div>
                             <div class="card-file-thumb">
-                            <i class="fas fa-file"></i>
+                              <i class="fas fa-file"></i>
                             </div>
                             <div class="card-body">
                               <h6><a href="">Document.docx</a></h6>
@@ -172,7 +192,7 @@
                               </div>
                             </div>
                             <div class="card-file-thumb">
-                             <i class="far fa-file-pdf"></i>
+                              <i class="far fa-file-pdf"></i>
                             </div>
                             <div class="card-body">
                               <h6><a href="">icon.png</a></h6>
@@ -205,7 +225,7 @@
                               </div>
                             </div>
                             <div class="card-file-thumb">
-                             <i class="far fa-file-image"></i>
+                              <i class="far fa-file-image"></i>
                             </div>
                             <div class="card-body">
                               <h6><a href="">Users.xls</a></h6>
@@ -237,7 +257,7 @@
                               </div>
                             </div>
                             <div class="card-file-thumb">
-                            <i class="fas fa-file"></i>
+                              <i class="fas fa-file"></i>
                             </div>
                             <div class="card-body">
                               <h6><a href="">Updates.docx</a></h6>
@@ -328,7 +348,7 @@
                               </div>
                             </div>
                             <div class="card-file-thumb">
-                           <i class="fas fa-file"></i>
+                              <i class="fas fa-file"></i>
                             </div>
                             <div class="card-body">
                               <h6><a href="">Tutorials.pdf</a></h6>
@@ -357,7 +377,7 @@
                               </div>
                             </div>
                             <div class="card-file-thumb">
-                             <i class="far fa-file-image"></i>
+                              <i class="far fa-file-image"></i>
                             </div>
                             <div class="card-body">
                               <h6><a href="">Tasks.xls</a></h6>
@@ -386,7 +406,7 @@
                               </div>
                             </div>
                             <div class="card-file-thumb">
-                            <i class="fas fa-file"></i>
+                              <i class="fas fa-file"></i>
                             </div>
                             <div class="card-body">
                               <h6><a href="">Page.psd</a></h6>
@@ -444,7 +464,7 @@
                               </div>
                             </div>
                             <div class="card-file-thumb">
-                            <i class="fas fa-file"></i>
+                              <i class="fas fa-file"></i>
                             </div>
                             <div class="card-body">
                               <h6><a href="">Expenses.docx</a></h6>
@@ -582,3 +602,41 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      progrssBar: "0%",
+    };
+  },
+  methods: {
+    fileUpload() {
+      this.progrssBar = "0%";
+
+      var data = new FormData();
+      data.append("foo", "bar");
+      data.append("file", document.getElementById("file").files[0]);
+
+      http
+        .post("/file-manger", data, {
+          onUploadProgress: (progressEvent) => {
+            this.uploadFileProgress(progressEvent);
+          },
+        })
+        .then((res) => {
+          if (res.data.status === true) {
+          }
+        });
+    },
+    uploadFileProgress(progressEvent) {
+      let percentComplete = progressEvent.loaded / progressEvent.total;
+      percentComplete = parseInt(percentComplete * 100);
+      this.updateProgress(percentComplete);
+    },
+    updateProgress(percentComplete) {
+      this.progrssBar = percentComplete + "%";
+      console.log(this.progrssBar);
+    },
+  },
+};
+</script>

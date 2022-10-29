@@ -3,15 +3,17 @@
     <div class="page-header">
         <div class="row align-items-center">
             <div class="col">
-                <h3 class="page-title">Hospital Admin</h3>
+                <h3 class="page-title">{{project.name}}</h3>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="admin-dashboard.html">Dashboard</a></li>
+                    <li class="breadcrumb-item">
+						<router-link to="/admin-dashboard">Dashboard</router-link>
+					</li>
                     <li class="breadcrumb-item active">Project</li>
                 </ul>
             </div>
-            <div class="col-auto float-end ms-auto">
-                <a href="#" class="btn add-btn" data-bs-toggle="modal" data-bs-target="#edit_project"><i class="fa fa-plus"></i> Edit Project</a>
-                <router-link to="/task-board" class="btn btn-white float-end m-r-10" data-bs-toggle="tooltip" title="Task Board"><i class="fa fa-bars"></i></router-link>
+            <div class="col-auto float-end ">
+                <a href="#" class="btn add-btn " data-bs-toggle="modal" data-bs-target="#edit_project"><i class="fa fa-plus"></i> Edit Project</a>
+                <router-link to="/task-board" class="btn btn-white float-end "  v-tooltip title="Task Board"><i class="fa fa-bars"></i></router-link>
             </div>
         </div>
     </div>
@@ -20,7 +22,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="project-title">
-                        <h5 class="card-title">Hospital Administration</h5>
+                        <h5 class="card-title">{{project.project_name}}</h5>
                         <small class="block text-ellipsis m-b-15"><span class="text-xs">2</span> <span class="text-muted">open tasks, </span><span class="text-xs">5</span> <span class="text-muted">tasks completed</span></small>
                     </div>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel elit neque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum sollicitudin libero vitae est consectetur, a molestie tortor consectetur. Aenean tincidunt interdum ipsum, id pellentesque diam suscipit ut. Vivamus massa mi, fermentum eget neque eget, imperdiet tristique lectus. Proin at purus ut sem pellentesque tempor sit amet ut lectus. Sed orci augue, placerat et pretium ac, hendrerit in felis. Integer scelerisque libero non metus commodo, et hendrerit diam aliquet. Proin tincidunt porttitor ligula, a tincidunt orci pellentesque nec. Ut ultricies maximus nulla id consequat. Fusce eu consequat mi, eu euismod ligula. Aliquam porttitor neque id massa porttitor, a pretium velit vehicula. Morbi volutpat tincidunt urna, vel ullamcorper ligula fermentum at. </p>
@@ -311,7 +313,7 @@
                     </table>
                     <p class="m-b-5">Progress <span class="text-success float-end">40%</span></p>
                     <div class="progress progress-xs mb-0">
-                        <div class="progress-bar bg-success" role="progressbar" data-bs-toggle="tooltip" title="40%" style="width: 40%"></div>
+                        <div class="progress-bar bg-success" role="progressbar"  v-tooltip title="40%" style="width: 40%"></div>
                     </div>
                 </div>
             </div>
@@ -511,139 +513,22 @@
         </div>
     </div>
 </div>
-<div id="edit_project" class="modal custom-modal fade" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Edit Project</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Project Name</label>
-                                <input class="form-control" value="Project Management" type="text">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Client</label>
-                                <select class="select">
-                                    <option>Global Technologies</option>
-                                    <option>Delta Infotech</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Start Date</label>
-                                <div class="cal-icon">
-                                    <input class="form-control datetimepicker" type="text">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>End Date</label>
-                                <div class="cal-icon">
-                                    <input class="form-control datetimepicker" type="text">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label>Rate</label>
-                                <input placeholder="$50" class="form-control" value="$5000" type="text">
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label>&nbsp;</label>
-                                <select class="select">
-                                    <option>Hourly</option>
-                                    <option selected>Fixed</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Priority</label>
-                                <select class="select">
-                                    <option selected>High</option>
-                                    <option>Medium</option>
-                                    <option>Low</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Add Project Leader</label>
-                                <input class="form-control" type="text">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Team Leader</label>
-                                <div class="project-members">
-                                    <a class="avatar" href="#" data-bs-toggle="tooltip" title="Jeffery Lalor">
-                                    <img alt="" src="/img/avatar.jpg">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Add Team</label>
-                                <input class="form-control" type="text">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Team Members</label>
-                                <div class="project-members">
-                                    <a class="avatar" href="#" data-bs-toggle="tooltip" title="John Doe">
-                                    <img alt="" src="/img/avatar.jpg">
-                                    </a>
-                                    <a class="avatar" href="#" data-bs-toggle="tooltip" title="Richard Miles">
-                                    <img alt="" src="/img/avatar.jpg">
-                                    </a>
-                                    <a class="avatar" href="#" data-bs-toggle="tooltip" title="John Smith">
-                                    <img alt="" src="/img/avatar.jpg">
-                                    </a>
-                                    <a class="avatar" href="#" data-bs-toggle="tooltip" title="Mike Litorus">
-                                    <img alt="" src="/img/avatar.jpg">
-                                    </a>
-                                    <span class="all-team">+2</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Description</label>
-                        <textarea rows="4" class="form-control" placeholder="Enter your message here"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Upload Files</label>
-                        <input class="form-control" type="file">
-                    </div>
-                    <div class="submit-section">
-                        <button class="btn btn-primary submit-btn">Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+
 </template>
+
+<script>
+export default {
+	data(){
+		return{
+			project:{},
+		}
+	},
+	created(){
+		let project_id  = this.$route.params.id;
+		http.get(`/project/${project_id}`).then((res) =>{
+			this.project = res.data.data;
+		})
+	}
+
+}
+</script>

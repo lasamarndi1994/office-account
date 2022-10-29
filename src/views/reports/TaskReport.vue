@@ -75,7 +75,7 @@
                     <li>
                       <a
                         href="#"
-                        data-bs-toggle="tooltip"
+                         v-tooltip
                         title=""
                         data-original-title="Jeffery Lalor"
                         ><img alt="" src="/img/avatar.jpg"
@@ -101,7 +101,7 @@
                     <li>
                       <a
                         href="#"
-                        data-bs-toggle="tooltip"
+                         v-tooltip
                         title=""
                         data-original-title="Jeffery Lalor"
                         ><img alt="" src="/img/avatar.jpg"
