@@ -612,7 +612,6 @@ export default {
   methods: {
     fileUpload() {
       this.progrssBar = "0%";
-
       var data = new FormData();
       data.append("foo", "bar");
       data.append("file", document.getElementById("file").files[0]);
